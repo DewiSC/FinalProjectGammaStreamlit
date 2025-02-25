@@ -13,7 +13,7 @@ st.title("Hotel Booking Cancellation Prediction")
 st.sidebar.header("Masukkan Data Pemesanan:")
 
 def user_input():
-    lead_time = st.sidebar.slider("Lead Time (Hari)", 0, 500, 100)
+    lead_time = st.sidebar.slider("Lead Time (Hari)", 0, 365, 100)
     total_special_requests = st.sidebar.slider("Total Special Requests", 0, 5, 1)
     previous_cancellations = st.sidebar.slider("Previous Cancellations", 0, 10, 0)
     booking_changes = st.sidebar.slider("Booking Changes", 0, 10, 0)
