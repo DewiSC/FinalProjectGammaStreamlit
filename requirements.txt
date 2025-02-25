@@ -9,3 +9,4 @@ plotly.express
 missingno
 category_encoders
 lightgbm
+imblearn.pipeline
