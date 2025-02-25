@@ -7,3 +7,4 @@ matplotlib
 seaborn
 plotly.express
 missingno
+category_encoders
