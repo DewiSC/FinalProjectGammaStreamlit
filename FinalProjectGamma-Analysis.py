@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 # Load Model yang sudah disimpan
-model = pickle.load(open('Model_final.sav', 'rb'))
+model = pickle.load(open('Model_final.pkl', 'rb'))
 
 # Judul Aplikasi
 st.title("Hotel Booking Cancellation Prediction")
