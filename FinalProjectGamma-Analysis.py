@@ -1407,10 +1407,10 @@ def evaluate_model_with_undersampling(model, data, target, transformer):
 result_without_undersampling, result_with_undersampling = evaluate_model_with_undersampling(XGBClassifier(), x_train, y_train, transformer)
 
 print("Hasil Tanpa Oversampling:")
-display(result_without_undersampling)
+st.write(result_without_undersampling)
 
 print("\nHasil Dengan Oversampling:")
-display(result_with_undersampling)
+st.write(result_with_undersampling)
 
 
 # ##### **2. LightGBM**
