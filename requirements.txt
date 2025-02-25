@@ -3,11 +3,3 @@ pandas
 numpy
 scikit-learn
 xgboost
-matplotlib
-seaborn
-plotly.express
-missingno
-category_encoders
-lightgbm
-imblearn.pipeline
-imbalanced-learn
