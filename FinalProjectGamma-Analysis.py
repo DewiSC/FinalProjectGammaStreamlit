@@ -18,6 +18,10 @@ def user_input():
     previous_cancellations = st.sidebar.slider("Previous Cancellations", 0, 10, 0)
     booking_changes = st.sidebar.slider("Booking Changes", 0, 10, 0)
     required_car_parking_spaces = st.sidebar.slider("Required Car Parking Spaces", 0, 5, 0)
+    reserved_room_type = st.sidebar.selectbox(
+        "Reserved Room Type", 
+        ("standard", "superior", "deluxe", "suite")
+    )
 
     # Data dalam bentuk DataFrame
     data = {
@@ -26,6 +30,7 @@ def user_input():
         "previous_cancellations": previous_cancellations,
         "booking_changes": booking_changes,
         "required_car_parking_spaces": required_car_parking_spaces,
+        "reserved_room_type": reserved_room_type,
     }
 
     return pd.DataFrame([data])
