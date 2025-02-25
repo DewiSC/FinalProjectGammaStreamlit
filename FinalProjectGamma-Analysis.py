@@ -1,10 +1,10 @@
 import streamlit as st
 import pickle
 import pandas as pd
-import numpy as np
 
-# Load Model yang sudah disimpan
-model = pickle.load(open('Dataset/Model_final.pkl', 'rb'))
+# Load Transformer dan Model dari file pickle
+with open('Dataset/Model_final.pkl', 'rb') as f:
+    transformer, model = pickle.load(f)
 
 # Judul Aplikasi
 st.title("Hotel Booking Cancellation Prediction")
@@ -18,11 +18,11 @@ def user_input():
     previous_cancellations = st.sidebar.slider("Previous Cancellations", 0, 10, 0)
     booking_changes = st.sidebar.slider("Booking Changes", 0, 10, 0)
     required_car_parking_spaces = st.sidebar.slider("Required Car Parking Spaces", 0, 5, 0)
-    reserved_room_type = st.sidebar.selectbox(
-        "Reserved Room Type", 
-        ("standard", "superior", "deluxe", "suite")
-    )
-
+    
+    # Input data kategorikal
+    reserved_room_type = st.sidebar.selectbox("Reserved Room Type", ["Standard", "Superior", "Deluxe", "Suite"])
+    assigned_room_type = st.sidebar.selectbox("Assigned Room Type", ["Standard", "Superior", "Deluxe", "Suite"])
+    
     # Data dalam bentuk DataFrame
     data = {
         "lead_time": lead_time,
@@ -31,6 +31,7 @@ def user_input():
         "booking_changes": booking_changes,
         "required_car_parking_spaces": required_car_parking_spaces,
         "reserved_room_type": reserved_room_type,
+        "assigned_room_type": assigned_room_type
     }
 
     return pd.DataFrame([data])
@@ -38,8 +39,11 @@ def user_input():
 # Ambil input dari user
 input_df = user_input()
 
+# Pastikan kolom sesuai dengan training model
+input_df = transformer.transform(input_df)
+
 # Tampilkan input data
-st.subheader("Data Pemesanan yang Dimasukkan:")
+st.subheader("Data Pemesanan yang Dimasukkan (Setelah Transformasi):")
 st.write(input_df)
 
 # Prediksi dengan model
