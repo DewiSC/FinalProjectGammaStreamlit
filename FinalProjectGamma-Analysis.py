@@ -3,7 +3,7 @@ import pickle
 import pandas as pd
 
 # Load Model yang sudah disimpan
-model = pickle.load(open('Dataset/Model_final.sav', 'rb'))
+model = pickle.load(open('Dataset/Model_final.pkl', 'rb'))
 
 # Judul Aplikasi
 st.title("Hotel Booking Cancellation Prediction")
