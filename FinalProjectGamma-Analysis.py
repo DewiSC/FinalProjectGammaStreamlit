@@ -23,7 +23,7 @@ def user_input():
     length_of_stay = st.sidebar.slider("Length of Stay", 1, 30, 3)
     is_repeated_guest = st.sidebar.radio("Is Repeated Guest?", [0, 1])  # Binary input
     
-    # Data dalam bentuk DataFrame
+    # Data dalam bentuk dictionary
     data = {
         "lead_time": lead_time,
         "stays_in_week_nights": stays_in_week_nights,
@@ -36,11 +36,22 @@ def user_input():
         "length_of_stay": length_of_stay,
         "is_repeated_guest": is_repeated_guest
     }
-    
+
     return pd.DataFrame([data])
 
 # Ambil input dari user
 input_df = user_input()
+
+# Pastikan fitur input_df sesuai dengan model
+expected_features = model.feature_names_in_  # Daftar fitur yang digunakan saat training
+
+# Tambahkan fitur yang hilang dengan nilai default 0
+for feature in expected_features:
+    if feature not in input_df.columns:
+        input_df[feature] = 0  
+
+# Pastikan urutan kolom sesuai dengan model
+input_df = input_df[expected_features]
 
 # Tampilkan input data
 st.subheader("Data Pemesanan yang Dimasukkan:")
